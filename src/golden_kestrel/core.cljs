@@ -45,8 +45,9 @@
       nil
       (dom/fieldset
         nil
-        (dom/label nil "Badge type")
+        (dom/label #js {:htmlFor "kestrel-badge-type"} "Badge type")
         (dom/select #js {:ref "badgeType"
+                         :id "kestrel-badge-type"
                          :value (:badge-type data)
                          :defaultValue (:badge-type data)
                          :onChange (partial change-data :badge-type)}
@@ -56,8 +57,9 @@
                     (dom/option #js {:value "donut"} "Donut")
                     (dom/option #js {:value "medium-donut"} "Medium donut")
                     (dom/option #js {:value "large-donut"} "Large donut"))
-        (dom/label nil "Popover")
+        (dom/label #js {:htmlFor "kestrel-popover"} "Popover")
         (dom/select #js {:ref "popover"
+                         :id "kestrel-popover"
                          :value (:popover data)
                          :defaultValue (if (= "" (:badge-details data))
                                          (:popover data)
@@ -68,8 +70,9 @@
                     (dom/option #js {:value "right"} "Right")
                     (dom/option #js {:value "bottom"} "Bottom")
                     (dom/option #js {:value "left"} "Left"))
-        (dom/label nil "Details")
+        (dom/label #js {:htmlFor "kestrel-details"} "Details")
         (dom/select #js {:ref "details"
+                         :id "kestrel-details"
                          :value (:badge-details data)
                          :defaultValue (if (= "" (:popover data))
                                          (:badge-details data)
@@ -77,14 +80,16 @@
                          :onChange (partial change-data :badge-details)}
                     (dom/option #js {:value ""} "None")
                     (dom/option #js {:value "right"} "Right"))
-        (dom/label nil "Hide no mentions?")
         (dom/input #js {:ref "hideNoMentions"
+                        :id "kestrel-no-mentions"
                         :type "checkbox"
                         :checked (:hide-no-mentions data)
                         :onChange (partial change-data :hide-no-mentions)}
                    nil)
-        (dom/label nil "DOI")
+        (dom/label #js {:htmlFor "kestrel-no-mentions"} "Hide no mentions?")
+        (dom/label #js {:htmlFor "kestrel-doi"} "DOI")
         (dom/input #js {:ref "doi"
+                        :id "kestrel-doi"
                         :type "text"
                         :size "40"
                         :defaultValue (:doi data)
