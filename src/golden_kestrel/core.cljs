@@ -105,6 +105,13 @@
         form-elem)
       (aget possibles 0))))
 
+(defn run-altmetric-embeds
+  []
+  (try
+    (js/_altmetric_embed_init)
+    (catch js/Object e
+      (js/setTimeout run-altmetric-embeds 200))))
+
 (defn ^:export init
   []
   (when-let [rootdom (. js/document (getElementById "golden-kestrel"))]
@@ -118,6 +125,6 @@
       (om/root
         app-state
         (fn [app owner]
-          (js/setTimeout js/_altmetric_embed_init 500)
+          (run-altmetric-embeds)
           (om/component (embed app)))
         embed-element))))
