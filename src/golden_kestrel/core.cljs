@@ -93,17 +93,29 @@
                                :defaultValue (:doi data)
                                :onChange (partial change-data :doi)} nil)))))
 
+(defn find-or-create-element
+  [root class-name]
+  (let [possibles (. root (getElementsByClassName class-name))]
+    (if (= 0 (.-length possibles))
+      (let [form-elem (. js/document (createElement "div"))]
+        (set! (.-className form-elem) class-name)
+        (. root (appendChild form-elem))
+        form-elem)
+      (aget possibles 0))))
+
 (defn ^:export init
   []
-  (om/root
-    app-state
-    (fn [app owner]
-      (om/component (embed-form app owner)))
-    (. js/document (getElementById "embed-form")))
-
-  (om/root
-    app-state
-    (fn [app owner]
-      (js/setTimeout js/_altmetric_embed_init 500)
-      (om/component (embed app)))
-    (. js/document (getElementById "embed-example"))))
+  (when-let [rootdom (. js/document (getElementById "golden-kestrel"))]
+    (let [form-element (find-or-create-element rootdom "embed-form")
+          embed-element (find-or-create-element rootdom "embed-example")]
+      (om/root
+        app-state
+        (fn [app owner]
+          (om/component (embed-form app owner)))
+        form-element)
+      (om/root
+        app-state
+        (fn [app owner]
+          (js/setTimeout js/_altmetric_embed_init 500)
+          (om/component (embed app)))
+        embed-element))))
