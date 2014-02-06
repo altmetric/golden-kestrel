@@ -17,12 +17,11 @@ label {
   padding-left: 1em;
 }
 </style>
-    <!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.8.0/react.min.js" type="text/javascipt"></script> -->
-    <!-- <script src="http://fb.me/react-0.8.0.js" type="text/javascript"></script> //-->
     <script src="resources/js/react-0.8.0.js" type="text/javascript"></script>
+    <script src="resources/js/altmetric_badges.js" type="text/javascript"></script>
     <!-- <script src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js" type="text/javascipt"></script> -->
-    <script src="http://altmetric-bookmarklet.dev/assets/altmetric_badges.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="http://altmetric-bookmarklet.dev/assets/embed.css">
+    <!-- <script src="http://altmetric-bookmarklet.dev/assets/altmetric_badges.js" type="text/javascript"></script> -->
+    <!-- <link rel="stylesheet" href="http://altmetric-bookmarklet.dev/assets/embed.css"> -->
     <link rel="stylesheet" href="resources/css/bootstrap.css">
 </head>
 <body>
@@ -31,6 +30,7 @@ label {
 
     <script src="out/goog/base.js" type="text/javascript"></script>
     <script src="out/kestrel-dev.js" type="text/javascript"></script>
-    <script>goog.require("embed_om.core");</script>
+    <script>goog.require("golden_kestrel.core");</script>
+    <script>golden_kestrel.core.init();</script>
 </body>
 </html>
