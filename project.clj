@@ -14,4 +14,11 @@
                         :compiler {:output-to "out/kestrel-dev.js"
                                    :output-dir "out"
                                    :optimizations :none
-                                   :source-map true}}]})
+                                   :source-map true}}
+                       {:id "release"
+                        :source-paths ["src"]
+                        :compiler {:output-to "out/kestrel-release.js"
+                                   :optimizations :advanced
+                                   :pretty-print false
+                                   :preamble ["react/react.min.js"]
+                                   :externs ["react/externs/react.js"]}}]})
