@@ -128,3 +128,5 @@
           (run-altmetric-embeds)
           (om/component (embed app)))
         embed-element))))
+
+(init)
