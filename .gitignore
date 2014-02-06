@@ -7,3 +7,5 @@ target/
 .lein-deps-sum
 .lein-repl-history
 .lein-plugins/
+source.js.map
+*-release.js
