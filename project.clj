@@ -1,6 +1,6 @@
 (defproject golden_kestrel "0.1.0-SNAPSHOT"
   :description "An Interactive Altmetric Embed Configurator of Supreme Excellence"
-  :url "http://example.com/FIXME"
+  :url "https://github.com/digital-science/golden-kestrel"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]

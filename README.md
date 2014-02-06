@@ -1,10 +1,14 @@
-# golden_kestrel
+# golden-kestrel
 
-A Clojure library designed to ... well, that part is up to you.
+The Golden Kestrel manipulates donuts for the good of science.
 
 ## Usage
 
-FIXME
+To start automatic compilation:
+
+    lein cljsbuild auto
+
+The optimized compiled source will then be available in `kestrel-release.js`.
 
 ## License
 
