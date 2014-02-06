@@ -17,8 +17,9 @@
                                    :source-map true}}
                        {:id "release"
                         :source-paths ["src"]
-                        :compiler {:output-to "out/kestrel-release.js"
+                        :compiler {:output-to "kestrel-release.js"
                                    :optimizations :advanced
                                    :pretty-print false
+                                   :source-map "source.js.map"
                                    :preamble ["react/react.min.js"]
                                    :externs ["react/externs/react.js"]}}]})
