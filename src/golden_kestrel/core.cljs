@@ -31,7 +31,7 @@
                        (apply assoc state all-vals)))))
 
 (defn embed [data]
-  (dom/div #js {:className "altmetric-embed",
+  (dom/div #js {:className "altmetric-embed"
                 :data-badge-popover (:popover data)
                 :data-badge-details (:badge-details data)
                 :data-badge-type (:badge-type data)
