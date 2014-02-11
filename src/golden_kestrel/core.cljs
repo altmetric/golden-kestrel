@@ -1,5 +1,7 @@
 (ns golden-kestrel.core
   (:require
+    [clojure.string :as string]
+    [clojure.set :as set]
     [om.core :as om :include-macros true]
     [om.dom :as dom :include-macros true]))
 
@@ -30,16 +32,41 @@
     (om/update! data (fn [state]
                        (apply assoc state all-vals)))))
 
-(defn embed [data]
-  (dom/div #js {:className "altmetric-embed"
-                :data-badge-popover (:popover data)
-                :data-badge-details (:badge-details data)
-                :data-badge-type (:badge-type data)
-                :data-doi (:doi data)
-                :data-hide-no-mentions (:hide-no-mentions data)}
-           nil))
+(defn attributes-for-embed
+  [data]
+  (into
+    {}
+    (remove
+      (comp string/blank? second)
+      {:className "altmetric-embed"
+       :data-badge-popover (:popover data)
+       :data-badge-details (:badge-details data)
+       :data-badge-type (:badge-type data)
+       :data-doi (:doi data)
+       :data-hide-no-mentions (:hide-no-mentions data)})))
 
-(defn embed-form [data owner]
+(defn pair-as-attribute
+  [[k v]]
+  (str (name k) "=\"" v "\""))
+
+(defn attributes-for-pre
+  [data]
+  (->> (set/rename-keys (attributes-for-embed data)
+                        {:className :class})
+       (map pair-as-attribute)
+       (string/join " ")))
+
+(defn embed-code
+  [data]
+  (dom/pre #js {:className "prettyprint"}
+           (str "<div " (attributes-for-pre data) "></div>")))
+
+(defn embed
+  [data]
+  (dom/div (clj->js (attributes-for-embed data)) nil))
+
+(defn embed-form
+  [data owner]
   (let [change-data (partial update-app data)]
     (dom/form
       nil
@@ -116,7 +143,8 @@
   []
   (when-let [rootdom (. js/document (getElementById "golden-kestrel"))]
     (let [form-element (find-or-create-element rootdom "embed-form")
-          embed-element (find-or-create-element rootdom "embed-example")]
+          embed-element (find-or-create-element rootdom "embed-example")
+          code-element (find-or-create-element rootdom "embed-code")]
       (om/root
         app-state
         (fn [app owner]
@@ -125,8 +153,13 @@
       (om/root
         app-state
         (fn [app owner]
-          (run-altmetric-embeds)
+          (js/setTimeout run-altmetric-embeds 100)
           (om/component (embed app)))
-        embed-element))))
+        embed-element)
+      (om/root
+        app-state
+        (fn [app owner]
+          (om/component (embed-code app)))
+        code-element))))
 
 (init)
