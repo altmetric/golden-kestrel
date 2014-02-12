@@ -2,6 +2,7 @@
   (:require
     [clojure.string :as string]
     [clojure.set :as set]
+    [goog.dom :as gdom]
     [om.core :as om :include-macros true]
     [om.dom :as dom :include-macros true]))
 
@@ -124,11 +125,11 @@
 
 (defn find-or-create-element
   [root class-name]
-  (let [possibles (. root (getElementsByClassName class-name))]
+  (let [possibles (gdom/getElementsByClass class-name root)]
     (if (= 0 (.-length possibles))
-      (let [form-elem (. js/document (createElement "div"))]
+      (let [form-elem (gdom/createElement "div")]
         (set! (.-className form-elem) class-name)
-        (. root (appendChild form-elem))
+        (gdom/appendChild root form-elem)
         form-elem)
       (aget possibles 0))))
 
@@ -141,7 +142,7 @@
 
 (defn ^:export init
   []
-  (when-let [rootdom (. js/document (getElementById "golden-kestrel"))]
+  (when-let [rootdom (gdom/getElement "golden-kestrel")]
     (let [form-element (find-or-create-element rootdom "embed-form")
           embed-element (find-or-create-element rootdom "embed-example")
           code-element (find-or-create-element rootdom "embed-code")]
