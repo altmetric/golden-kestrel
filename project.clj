@@ -9,6 +9,7 @@
                  [com.facebook/react "0.8.0.1"]]
   :plugins [[lein-cljsbuild "1.0.1"]]
   :source-paths ["src"]
+  :jvm-opts ^:replace  ["-Xms512m" "-Xmx512m" "-server"]
   :cljsbuild {:builds [{:id "dev"
                         :source-paths ["src"]
                         :compiler {:output-to "out/kestrel-dev.js"
@@ -18,8 +19,9 @@
                        {:id "release"
                         :source-paths ["src"]
                         :compiler {:output-to "kestrel-release.js"
-                                   :optimizations :advanced
-                                   :pretty-print false
-                                   :source-map "source.js.map"
-                                   :preamble ["react/react.min.js"]
+                                   :optimizations :simple
+                                   :pretty-print true
+                                   :preamble ["js/components/es5-shim/es5-shim.min.js"
+                                              "js/components/es5-shim/es5-sham.min.js"
+                                              "react/react.min.js"]
                                    :externs ["react/externs/react.js"]}}]})
