@@ -9,3 +9,5 @@ target/
 .lein-plugins/
 source.js.map
 *-release.js
+npm-debug.log
+resources/js/components
