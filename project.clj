@@ -1,8 +1,8 @@
-(defproject golden_kestrel "0.1.0-SNAPSHOT"
+(defproject golden_kestrel "0.1.0"
   :description "An Interactive Altmetric Embed Configurator of Supreme Excellence"
-  :url "https://github.com/digital-science/golden-kestrel"
-  :license {:name "Eclipse Public License"
-            :url "http://www.eclipse.org/legal/epl-v10.html"}
+  :url "https://github.com/altmetric/golden-kestrel"
+  :license {:name "MIT"
+            :url "http://opensource.org/licenses/MIT"}
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2138"]
                  [om "0.3.6"]
@@ -10,8 +10,6 @@
   :plugins [[lein-cljsbuild "1.0.1"]
             [org.clojars.wokier/lein-bower "0.5.0"]]
   :source-paths ["src"]
-  :prep-tasks ["javac" "compile" "bower"]
-  :jvm-opts ^:replace  ["-Xms512m" "-Xmx512m" "-server"]
   :cljsbuild {:builds [{:id "dev"
                         :source-paths ["src"]
                         :compiler {:output-to "out/kestrel-dev.js"
