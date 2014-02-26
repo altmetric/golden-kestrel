@@ -18,7 +18,7 @@
                                    :source-map true}}
                        {:id "release"
                         :source-paths ["src"]
-                        :compiler {:output-to "kestrel-release.js"
+                        :compiler {:output-to "golden-kestrel.js"
                                    :optimizations :advanced
                                    :pretty-print true
                                    :preamble ["js/components/es5-shim/es5-shim.min.js"

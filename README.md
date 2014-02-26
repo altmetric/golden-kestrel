@@ -12,11 +12,11 @@ To start automatic compilation:
 
     lein cljsbuild auto
 
-The optimized compiled source will then be available in `kestrel-release.js`.
+The optimized compiled source will then be available in `golden-kestrel.js`.
 
 The `index.html` contains local resources, so can be used simply by opening it.
 The `index-release.html` uses live assets including the compiled minified
-`kestrel-release.js`. To use it, you'd have to fetch it from a web server
+`golden-kestrel.js`. To use it, you'd have to fetch it from a web server
 (because most browsers won't allow `file:`-based resources to load JavaScript
 over HTTP(S)):
 
