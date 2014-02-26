@@ -2,7 +2,16 @@
 
 The Golden Kestrel manipulates donuts for the good of science.
 
+This project is written in
+[ClojureScript](https://github.com/clojure/clojurescript) and uses
+[Om](https://github.com/swannodette/om/) and therefore
+[ReactJS](http://facebook.github.io/react/).
+
 ## Usage
+
+You will need [Leiningen](https://github.com/technomancy/leiningen/) installed
+to work on the code in this repository, please refer to the [installation
+instructions](https://github.com/technomancy/leiningen/#installation)
 
 To fetch required JavaScript components:
 
