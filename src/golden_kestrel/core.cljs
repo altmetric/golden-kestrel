@@ -35,16 +35,14 @@
 
 (defn attributes-for-embed
   [data]
-  (into
-    {}
-    (remove
-      (comp string/blank? second)
-      {:className "altmetric-embed"
-       :data-badge-popover (:popover data)
-       :data-badge-details (:badge-details data)
-       :data-badge-type (:badge-type data)
-       :data-doi (:doi data)
-       :data-hide-no-mentions (:hide-no-mentions data)})))
+  (->> {:className "altmetric-embed"
+        :data-badge-popover (:popover data)
+        :data-badge-details (:badge-details data)
+        :data-badge-type (:badge-type data)
+        :data-doi (:doi data)
+        :data-hide-no-mentions (:hide-no-mentions data)}
+       (remove (comp string/blank? second))
+       (into {})))
 
 (defn pair-as-attribute
   [[k v]]
