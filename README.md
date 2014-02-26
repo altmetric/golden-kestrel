@@ -7,6 +7,10 @@ This project is written in
 [Om](https://github.com/swannodette/om/) and therefore
 [ReactJS](http://facebook.github.io/react/).
 
+This project was introduced with a
+[blog post](http://www.altmetric.com/blog/bake-your-own-donuts/) on the
+Altmetric blog.
+
 ## Usage
 
 You will need [Leiningen](https://github.com/technomancy/leiningen/) installed
