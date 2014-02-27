@@ -33,7 +33,10 @@ The `index-release.html` uses live assets including the compiled minified
 (because most browsers won't allow `file:`-based resources to load JavaScript
 over HTTP(S)):
 
-    python -m SimpleHTTPServer
+    lein simpleton 5000
+
+And then you can access the final assets via
+[http://localhost:5000/index-release.html](http://localhost:5000/index-release.html)
 
 ## License
 
