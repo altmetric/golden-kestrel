@@ -8,6 +8,14 @@
 
 (enable-console-print!)
 
+(def badge-types
+  [["4" "Small badge"]
+   ["2" "Medium badge"]
+   ["1" "Large badge"]
+   ["donut" "Small donut"]
+   ["medium-donut" "Medium donut"]
+   ["large-donut" "Large donut"]])
+
 (def app-state
   (atom {:badge-type "medium-donut",
          :badge-details ""
@@ -72,17 +80,14 @@
       (dom/fieldset
         nil
         (dom/label #js {:htmlFor "kestrel-badge-type"} "Badge type")
-        (dom/select #js {:ref "badgeType"
-                         :id "kestrel-badge-type"
-                         :value (:badge-type data)
-                         :defaultValue (:badge-type data)
-                         :onChange (partial change-data :badge-type)}
-                    (dom/option #js {:value ""} "Default")
-                    (dom/option #js {:value "1"} "1")
-                    (dom/option #js {:value "4"} "4")
-                    (dom/option #js {:value "donut"} "Donut")
-                    (dom/option #js {:value "medium-donut"} "Medium donut")
-                    (dom/option #js {:value "large-donut"} "Large donut"))
+        (apply dom/select
+               #js {:ref "badgeType"
+                    :id "kestrel-badge-type"
+                    :value (:badge-type data)
+                    :defaultValue (:badge-type data)
+                    :onChange (partial change-data :badge-type)}
+               (for [[value text] badge-types]
+                 (dom/option #js {:value value} text)))
         (dom/label #js {:htmlFor "kestrel-popover"} "Popover")
         (dom/select #js {:ref "popover"
                          :id "kestrel-popover"
