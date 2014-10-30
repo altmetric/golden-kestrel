@@ -14,7 +14,10 @@
    ["1" "Large badge"]
    ["donut" "Small donut"]
    ["medium-donut" "Medium donut"]
-   ["large-donut" "Large donut"]])
+   ["large-donut" "Large donut"]
+   ["bar" "Small bar"]
+   ["medium-bar" "Medium bar"]
+   ["large-bar" "Large bar"]])
 
 (def app-state
   (atom {:badge-type "medium-donut",
