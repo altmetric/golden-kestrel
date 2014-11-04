@@ -1,4 +1,4 @@
-(defproject golden_kestrel "0.1.0"
+(defproject golden_kestrel "0.1.3"
   :description "An Interactive Altmetric Embed Configurator of Supreme Excellence"
   :url "https://github.com/altmetric/golden-kestrel"
   :license {:name "MIT"
