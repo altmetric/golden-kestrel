@@ -19,13 +19,19 @@ instructions](https://github.com/technomancy/leiningen/#installation)
 
 To fetch required JavaScript components:
 
-    lein bower
+    lein bower install
 
 To start automatic compilation:
 
     lein cljsbuild auto
 
 The optimized compiled source will then be available in `golden-kestrel.js`.
+
+To build a version ready for deployment:
+
+    lein cljsbuild once release
+
+**NOTE: Currently, the downloaded external library versions of `es5-shim.min.js` and `es5-sham.min.js` include source mapping comments which, when included in the final compilation, break the overall Javascript file. A quick and dirty remedy is to delete those files once the dependencies have been installed, prior to compiling the release version of `golden-kestrel.js`.**
 
 The `index.html` contains local resources, so can be used simply by opening it.
 The `index-release.html` uses live assets including the compiled minified
