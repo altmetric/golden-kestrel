@@ -24,6 +24,8 @@
          :badge-details ""
          :popover "right"
          :hide-no-mentions true
+         :condensed false
+         :hide-less-than ""
          :doi "10.1038/nature.2014.14583"}))
 
 (defn update-app
@@ -51,8 +53,10 @@
         :data-badge-details (:badge-details data)
         :data-badge-type (:badge-type data)
         :data-doi (:doi data)
-        :data-hide-no-mentions (:hide-no-mentions data)}
-       (remove (comp string/blank? second))
+        :data-condensed (:condensed data)
+        :data-hide-no-mentions (:hide-no-mentions data)
+        :data-hide-less-than (:hide-less-than data)}
+       (remove (fn [[attr val]] (or (string/blank? val) (false? val))))
        (into {})))
 
 (defn pair-as-attribute
@@ -91,6 +95,13 @@
                     :onChange (partial change-data :badge-type)}
                (for [[value text] badge-types]
                  (dom/option #js {:value value} text)))
+        (dom/input #js {:ref "condensed"
+                        :id "kestrel-condensed"
+                        :type "checkbox"
+                        :checked (:condensed data)
+                        :onChange (partial change-data :condensed)}
+                   nil)
+        (dom/label #js {:htmlFor "kestrel-condensed"} "Condensed style?")
         (dom/label #js {:htmlFor "kestrel-popover"} "Popover")
         (dom/select #js {:ref "popover"
                          :id "kestrel-popover"
@@ -121,6 +132,13 @@
                         :onChange (partial change-data :hide-no-mentions)}
                    nil)
         (dom/label #js {:htmlFor "kestrel-no-mentions"} "Hide no mentions?")
+        (dom/label #js {:htmlFor "kestrel-hide-less-than"} "Hide if score less than")
+        (dom/input #js {:ref "hide-less-than"
+                        :id "kestrel-hide-less-than"
+                        :type "text"
+                        :size "10"
+                        :defaultValue (:hide-less-than data)
+                        :onChange (partial change-data :hide-less-than)} nil)
         (dom/label #js {:htmlFor "kestrel-doi"} "DOI")
         (dom/input #js {:ref "doi"
                         :id "kestrel-doi"
